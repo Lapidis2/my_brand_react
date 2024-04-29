@@ -1,5 +1,5 @@
 import React from "react";
-
+import BlogList from "./Blogs";
 const Home = () => {
   return (
     <div>
@@ -195,7 +195,9 @@ const Home = () => {
             <div className="row">
               <div className="section-title padd-15">
                 <h2>ARTICLES</h2>
-                <div id="myblogs"></div>
+                <div id="myblogs">
+                <BlogList />
+                </div>
               </div>
             </div>
           </section>
