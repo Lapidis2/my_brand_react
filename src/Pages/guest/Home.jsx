@@ -1,5 +1,6 @@
 import React from "react";
 import BlogList from "./Blogs";
+import LoginPage from "../auth/Login";
 const Home = () => {
   return (
     <div>
@@ -42,7 +43,7 @@ const Home = () => {
                 </a>
               </li>
               <li>
-                <a href="/login.html">
+                <a href="/LoginPage">
                   <i className="fa-solid fa-right-to-bracket"></i>Login
                 </a>
               </li>
