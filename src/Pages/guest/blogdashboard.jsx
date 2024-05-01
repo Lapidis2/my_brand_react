@@ -4,7 +4,7 @@ import axios from 'axios';
 import Guest from '../Portal/Guest';
 
 function BlogManagement() {
-  const [showNewBlogModal, setShowNewBlogModal] = useState(false);
+  const [showNewBlogModal, setShowNewBlogModal] = useState(true);
   const [showUpdateBlogModal, setShowUpdateBlogModal] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
@@ -34,14 +34,21 @@ function BlogManagement() {
 
     try {
       const token = getToken();
-      const response = await axios.post('https://my-brand-backend-tsc3.onrender.com/blogs', formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      
+console.log('Token:', token);
+
+      const response = await axios.post('https://my-brand-backend-tsc3.onrender.com/blogs',formData, {
+      
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       });
       console.log(response.data);
+      console.log('Response:', response);
+      console.log('Response Data:', response.data); 
       setNotifyMsg('Blog created successfully!');
-      setShowNewBlogModal(false);
+      setShowNewBlogModal(true);
       setTimeout(() => {
         setNotifyMsg('');
       }, 6000);
@@ -60,8 +67,10 @@ function BlogManagement() {
     try {
       const token = getToken();
       const response = await axios.put(`https://my-brand-backend-tsc3.onrender.com/blogs/${blogIdToUpdate}`, formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       });
       console.log(response.data);
@@ -77,7 +86,8 @@ function BlogManagement() {
       const confirmDelete = window.confirm('Are you sure you want to delete this blog?');
       if (confirmDelete) {
         const response = await axios.delete(`https://my-brand-backend-tsc3.onrender.com/blogs/${blogId}`, {
-          headers: {
+         
+        headers: {
             'Authorization': `Bearer ${token}`
           }
         });
@@ -89,9 +99,16 @@ function BlogManagement() {
   };
 
   const getToken = () => {
-    const token = localStorage.getItem('token');
-    return token ? JSON.parse(token) : null;
+    try {
+      const token = localStorage.getItem('token');
+      console.log("token",token)
+      return token ? JSON.parse(token) : null;
+    } catch (error) {
+      console.error('Error parsing token:', error.message);
+      return null;
+    }
   };
+  
 
   return (
     <main>
@@ -115,6 +132,7 @@ function BlogManagement() {
       </div>
 
       {/* New Blog Modal */}
+     { console.log("showNewBlogModal:", showNewBlogModal)}
       {showNewBlogModal && (
         <div>
           <h2>New Blog</h2>
@@ -125,6 +143,7 @@ function BlogManagement() {
             <button type="submit" id="createBtn">Create Blog</button>
           </form>
         </div>
+        
       )}
 
       {/* Update Blog Modal */}
