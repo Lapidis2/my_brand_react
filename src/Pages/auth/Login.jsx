@@ -33,7 +33,7 @@ const LoginPage = () => {
             }, 6000);
 
             
-            window.location.href = "/admin-panel";
+            window.location.href = "/adminPanel";
         } catch (error) {
             console.error('Login failed:', error);
             setErrorMessage('An unexpected error occurred.');
