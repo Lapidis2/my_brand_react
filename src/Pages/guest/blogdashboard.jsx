@@ -25,28 +25,35 @@ function BlogManagement() {
     fetchBlogs();
   }, []);
 
+  useEffect(() => {
+    if (showUpdateBlogModal && blogIdToUpdate) {
+      const blogToUpdate = blogs.find(blog => blog._id === blogIdToUpdate);
+      if (blogToUpdate) {
+        setImage(blogToUpdate.imageUrl);
+        setTitle(blogToUpdate.title);
+        setDescription(blogToUpdate.description);
+      }
+    }
+  }, [showUpdateBlogModal, blogIdToUpdate, blogs]);
+
   const handleNewBlogSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    console.log(formData)
     formData.append('title', title);
     formData.append('description', description);
     formData.append('image', image);
 
     try {
       const token = getToken();
-      
-console.log('Token:', token);
 
-      const response = await axios.post('https://my-brand-backend-tsc3.onrender.com/blogs',formData, {
-      
-      headers: {
+      const response = await axios.post('https://my-brand-backend-tsc3.onrender.com/blogs', formData, {
+        headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         }
       });
       console.log(response.data);
-      console.log('Response:', response);
-      console.log('Response Data:', response.data); 
       setNotifyMsg('Blog created successfully!');
       setShowNewBlogModal(true);
       setTimeout(() => {
@@ -59,26 +66,38 @@ console.log('Token:', token);
 
   const handleUpdateBlogSubmit = async (e) => {
     e.preventDefault();
+    
+    const updatedTitle = document.getElementById("updateTitle").value;
+    const updatedDescription = document.getElementById("updateDescription").value;
+    const updatedImage = document.getElementById('imageUrl').files[0];
+  
+  
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('image', image);
-
+             formData.append('title', updatedTitle);
+             formData.append('description', updatedDescription);
+             formData.append('image', updatedImage);
+            console.log(formData)
     try {
       const token = getToken();
-      const response = await axios.put(`https://my-brand-backend-tsc3.onrender.com/blogs/${blogIdToUpdate}`, formData, {
       
-      headers: {
+  
+      const response = await axios.put(`https://my-brand-backend-tsc3.onrender.com/blogs/${blogIdToUpdate}`, formData, {
+        headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         }
+        
       });
-      console.log(response.data);
+  
+      console.log('Response:', response);
+  console.log('Response Data:', response.data); 
       setShowUpdateBlogModal(false);
     } catch (error) {
       console.error('Error updating blog:', error.message);
     }
   };
+  
+  
 
   const handleDeleteBlog = async (blogId) => {
     try {
@@ -86,8 +105,7 @@ console.log('Token:', token);
       const confirmDelete = window.confirm('Are you sure you want to delete this blog?');
       if (confirmDelete) {
         const response = await axios.delete(`https://my-brand-backend-tsc3.onrender.com/blogs/${blogId}`, {
-         
-        headers: {
+          headers: {
             'Authorization': `Bearer ${token}`
           }
         });
@@ -108,7 +126,6 @@ console.log('Token:', token);
       return null;
     }
   };
-  
 
   return (
     <main>
@@ -119,16 +136,17 @@ console.log('Token:', token);
         <ul>
           {blogs.map(blog => (
             <li key={blog._id}>
-            {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '100%', height: 'auto' }} />}
-             <h2>{blog.title}</h2>
+              {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '100%', height: 'auto' }} />}
+              <h2>{blog.title}</h2>
               <p>{blog.description}</p>
-              <button onClick={() => { setShowUpdateBlogModal(true); setBlogIdToUpdate(blog._id); }}>Update</button>
+              <button onClick={() => { setShowUpdateBlogModal(true); 
+                                   setBlogIdToUpdate(blog._id);
+                               }}>Update</button>
               <button onClick={() => handleDeleteBlog(blog._id)}>Delete</button>
             </li>
           ))}
         </ul>
       </div>
-     { console.log("showNewBlogModal:", showNewBlogModal)}
       {showNewBlogModal && (
         <div>
           <h2>New Blog</h2>
@@ -139,22 +157,19 @@ console.log('Token:', token);
             <button type="submit" id="createBtn">Create Blog</button>
           </form>
         </div>
-        
       )}
-
       {showUpdateBlogModal && (
         <div>
           <h2>Update Blog</h2>
-          <form onSubmit={handleUpdateBlogSubmit}>
-            <input type="file" id="imageUrl" name="updatedBlogImage" accept="image/jpg, image/png" />
+          <form onSubmit={handleUpdateBlogSubmit}   >
+            <input type="file" id="imageUrl" name="updateImage" accept="image/jpg, image/png" onChange={(e) => setImage(e.target.files[0])} />
             <input type="hidden" id="blogId" value={blogIdToUpdate} />
-            <input type="text" id="title" name="updateTitle" required onChange={(e) => setTitle(e.target.value)} />
-            <textarea id="description" name="description" rows="6" required onChange={(e) => setDescription(e.target.value)} ></textarea>
+            <input type="text" id="updateTitle" name="updateTitle" value={title} required onChange={(e) => setTitle(e.target.value)} />
+            <textarea id="updateDescription" name="updateDescription" rows="6" value={description} required onChange={(e) => setDescription(e.target.value)} ></textarea>
             <button type="submit" value="submit" id="updatebtn">Submit</button>
           </form>
         </div>
       )}
-
       {notifyMsg && <p>{notifyMsg}</p>}
     </main>
   );
