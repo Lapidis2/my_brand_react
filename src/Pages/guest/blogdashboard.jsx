@@ -101,10 +101,10 @@ console.log('Token:', token);
   const getToken = () => {
     try {
       const token = localStorage.getItem('token');
-      console.log("token",token)
-      return token ? JSON.parse(token) : null;
+      console.log("token", token);
+      return token;
     } catch (error) {
-      console.error('Error parsing token:', error.message);
+      console.error('Error retrieving token:', error.message);
       return null;
     }
   };
@@ -116,22 +116,18 @@ console.log('Token:', token);
         <h1>Blog Management</h1>
       </header>
       <div className="blog__list">
-        {/* Render blogs list */}
         <ul>
           {blogs.map(blog => (
             <li key={blog._id}>
             {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '100%', height: 'auto' }} />}
              <h2>{blog.title}</h2>
               <p>{blog.description}</p>
-              {/* Add update and delete buttons */}
               <button onClick={() => { setShowUpdateBlogModal(true); setBlogIdToUpdate(blog._id); }}>Update</button>
               <button onClick={() => handleDeleteBlog(blog._id)}>Delete</button>
             </li>
           ))}
         </ul>
       </div>
-
-      {/* New Blog Modal */}
      { console.log("showNewBlogModal:", showNewBlogModal)}
       {showNewBlogModal && (
         <div>
@@ -146,7 +142,6 @@ console.log('Token:', token);
         
       )}
 
-      {/* Update Blog Modal */}
       {showUpdateBlogModal && (
         <div>
           <h2>Update Blog</h2>
@@ -160,7 +155,6 @@ console.log('Token:', token);
         </div>
       )}
 
-      {/* Notification message */}
       {notifyMsg && <p>{notifyMsg}</p>}
     </main>
   );
