@@ -133,7 +133,7 @@ console.log('Token:', token);
         <div>
           <h2>New Blog</h2>
           <form onSubmit={handleNewBlogSubmit}>
-            <input type="file" name="image" placeholder="file" id="blogimage" />
+            <input type="file" name="image" placeholder="file" id="blogimage" onChange={(e) => setImage(e.target.files[0])} />
             <input type="text" name="title" placeholder="Title" id="blogtitle" required onChange={(e) => setTitle(e.target.value)} />
             <textarea name="description" placeholder="Description" id="blogdesc" required onChange={(e) => setDescription(e.target.value)} ></textarea>
             <button type="submit" id="createBtn">Create Blog</button>
