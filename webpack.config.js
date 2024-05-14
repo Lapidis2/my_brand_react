@@ -10,7 +10,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                include: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -23,5 +23,10 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'), 
+        publicPath: '/', 
+        port: 3000 
     }
 };

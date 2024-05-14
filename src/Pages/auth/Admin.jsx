@@ -9,11 +9,9 @@ function AdminPanel() {
       <div className="sidebar">
         <h2><span style={{ color: 'white' }}>My</span>_Brand</h2>
         <ul>
-          <li><a href="./index.html"><FontAwesomeIcon icon={faHouse} /> Home</a></li>
+          <li><a href="./Home"><FontAwesomeIcon icon={faHouse} /> Home</a></li>
           <li><a href="./BlogManagement"><FontAwesomeIcon icon={faBlog} /> Blogs</a></li>
-          <li><a href="#messages"><FontAwesomeIcon icon={faComment} /> Messages</a></li>
-          <li><a href="#projects"><FontAwesomeIcon icon={faCircleCheck} /> Projects</a></li>
-          <li><a href="../index.html" id="logoutBtn"><FontAwesomeIcon icon={faRightFromBracket} /> Logout</a></li>
+          <li><a href="./LoginPage" id="logoutBtn"><FontAwesomeIcon icon={faRightFromBracket} /> Logout</a></li>
         </ul>
       </div>
 

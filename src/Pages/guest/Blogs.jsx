@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import SingleBlogPage from './singleblog';
 function BlogList() {
   const [blogsData, setBlogsData] = useState([]);
 
@@ -19,7 +19,7 @@ function BlogList() {
 
     fetchBlogs();
   }, []); 
-
+ 
   return (
     <div id="myblogs">
       {blogsData.map((blog) => (
@@ -28,7 +28,7 @@ function BlogList() {
             <img src={blog.imageUrl} alt={blog.title} />
             <h1 className="title">{blog.title}</h1>
             <p className="blog-desc">{blog.description}</p>
-            <a href={`reademore.html?id=${blog._id}`}>Read More</a>
+            <a href={`/singleBlogPage?id=${blog._id}`}>Read More</a>
           </div>
         </div>
       ))}

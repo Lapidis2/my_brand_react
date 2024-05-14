@@ -1,6 +1,7 @@
 import React from "react";
 import BlogList from "./Blogs";
 import LoginPage from "../auth/Login";
+import SingleBlogPage from "./singleblog";
 const Home = () => {
   return (
     <div>

@@ -1,0 +1,93 @@
+
+#theBlog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    width: 100%;
+    margin-top: 50px;
+    padding: 20px;
+}
+.singleimage{
+    
+ text-align: center;
+    
+}
+button{
+    height: 50px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #FFB703;
+    font-size: 18px;
+}
+button:hover{
+    background-color: #df1f1f;
+    cursor: pointer;
+}
+#singleContent {
+    max-width: 100%; 
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #c63838; 
+    border-radius: 10px; 
+}
+textarea{
+    width: 100%;
+    height: 75%;
+}
+#likesCont {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#likesNumber {
+    margin-right: 10px;
+}
+
+#commentSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#commentText {
+    width: 100%;
+    max-width: 600px; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+#commentsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#cb858f;
+    margin-bottom: 20px;
+    width: 400px;
+}
+
+
+#commentsContainer button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #cb858f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+commentsContainer button:hover {
+    background-color: #0056b3;
+}
+button{
+   
+    border-radius: 20px;
+    background-color: #FFB703;
+    font-size: 18px;
+}

@@ -49,7 +49,7 @@ const LoginPage = () => {
                 </div>
                 <div id="navbar">
                     <ul className="nav">
-                        <li><a href="#home" className="active"><i className="fa-solid fa-house"></i>Home</a></li>
+                        <li><a href="/#" className="active"><i className="fa-solid fa-house"></i>Home</a></li>
                         <li><a href="#about"><i className="fa-solid fa-address-card"></i>About</a></li>
                         <li><a href="Admin_panel/admin.html"><i className="fa-solid fa-blog"></i>Article</a></li>
                         <li><a href="Admin_panel/admin.html"><i className="fa-solid fa-book"></i>Projects</a></li>

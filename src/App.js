@@ -11,6 +11,8 @@ import Login from "./Pages/auth/Login";
 import LoginPage from "./Pages/auth/Login";
 import AdminPanel from "./Pages/auth/Admin";
 import BlogManagement from "./Pages/guest/blogdashboard";
+import SingleBlogPage from "./Pages/guest/singleblog";
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +21,7 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage/>} /> 
           <Route path="/adminPanel" element={<AdminPanel/>} /> 
           <Route path="/BlogManagement" element={<BlogManagement/>} />
+          <Route path="/SingleBlogPage" element={<SingleBlogPage/>} />
         </Routes>
       
 
