@@ -27,6 +27,13 @@ const LoginPage = () => {
             const data = await response.json();
             const token = data.token;
             localStorage.setItem("token", token);
+            const userId=data.userId;
+            localStorage.setItem("userId",userId)
+            
+            if (!userId) {
+                setErrorMessage('User ID is not available');
+                return;
+            }
             setErrorMessage('Login successful!');
             setTimeout(() => {
                 setErrorMessage('');

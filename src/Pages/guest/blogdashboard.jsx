@@ -128,11 +128,11 @@ function BlogManagement() {
   };
 
   return (
-    <main>
+    <main >
       <header style={{ textAlign: 'center' }}>
         <h1>Blog Management</h1>
       </header>
-      <div className="blog__list">
+      <div className="blog__list" style={{textAlign:'center'}}>
         <ul>
           {blogs.map(blog => (
             <li key={blog._id}>
@@ -148,9 +148,9 @@ function BlogManagement() {
         </ul>
       </div>
       {showNewBlogModal && (
-        <div>
+        <div >
           <h2>New Blog</h2>
-          <form onSubmit={handleNewBlogSubmit}>
+          <form onSubmit={handleNewBlogSubmit} >
             <input type="file" name="image" placeholder="file" id="blogimage" onChange={(e) => setImage(e.target.files[0])} />
             <input type="text" name="title" placeholder="Title" id="blogtitle" required onChange={(e) => setTitle(e.target.value)} />
             <textarea name="description" placeholder="Description" id="blogdesc" required onChange={(e) => setDescription(e.target.value)} ></textarea>
